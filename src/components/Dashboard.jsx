@@ -8,17 +8,26 @@ const DashboardContainer = styled.div`
   margin: 20px;
 `;
 
-const Dashboard = ({ selectedPokemon }) => {
+const Dashboard = ({ selectedPokemon, onRemovePokemon }) => {
+  if (selectedPokemon.length > 6) {
+    alert("최대 6개까지만 선택할 수 있습니다.");
+    // return true;
+  }
+
   return (
     <DashboardContainer>
-      <h2>나만의 포켓몬</h2>
+      <h2>대시보드</h2>
       {selectedPokemon.length === 0 ? (
         <p>포켓몬을 선택해주세요.</p>
       ) : (
         <ul>
-          {selectedPokemon.map((pokemon) => {
-            <li key={pokemon.id}>{pokemon.korean_name}</li>;
-          })}
+          {selectedPokemon.map((pokemon) => (
+            <li key={pokemon.id}>
+              <img src={pokemon.img_url} />
+              {pokemon.korean_name}
+              <button onClick={() => onRemovePokemon(pokemon.id)}>삭제</button>
+            </li>
+          ))}
         </ul>
       )}
     </DashboardContainer>

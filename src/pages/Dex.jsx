@@ -6,19 +6,33 @@ import PokemonList from "../components/PokemonList";
 const Dex = () => {
   const [selectedPokemon, setSelectedPokemon] = useState([]);
 
-  const addPokemon = () => {
-    const addPokemonCard = {
-      id: MOCK_DATA.id,
-      name: MOCK_DATA.korean_name,
-      img: MOCK_DATA.img_url,
-    };
-    setSelectedPokemon(addPokemonCard);
+  const addPokemon = (pokemon) => {
+    if (!selectedPokemon.some((item) => item.id === pokemon.id)) {
+      setSelectedPokemon([...selectedPokemon, pokemon]);
+    } else if (selectedPokemon) {
+      alert("이미 선택한 포켓몬 입니다.");
+      return;
+    }
+  };
+
+  const removePokemon = (pokemonId) => {
+    const filteredPokemon = selectedPokemon.filter((item) => {
+      return item.id !== pokemonId;
+    });
+    setSelectedPokemon(filteredPokemon);
   };
 
   return (
     <div>
-      <Dashboard selectedPokemon={selectedPokemon} />
-      <PokemonList pokemonList={MOCK_DATA} onAddPokemon={addPokemon} />
+      <Dashboard
+        selectedPokemon={selectedPokemon}
+        onRemovePokemon={removePokemon}
+      />
+      <PokemonList
+        pokemonList={MOCK_DATA}
+        selectedPokemon={selectedPokemon}
+        onAddPokemon={addPokemon}
+      />
     </div>
   );
 };

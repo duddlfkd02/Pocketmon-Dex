@@ -1,16 +1,15 @@
 import styled from "styled-components";
 
-const PokemonCard = ({ onAdd, pokemon, isSelected }) => {
-  const { img_url, korean_name } = pokemon;
-  // console.log(pokemon);
+const PokemonCard = ({ onAdd, pokemon, onRemove, isSelected }) => {
+  const { img_url, korean_name, id } = pokemon;
   return (
     <Card>
-      <img src={img_url} />
+      <img src={img_url} alt={korean_name} />
       <p>{korean_name}</p>
       {isSelected ? (
-        <Button onClick={() => {}}>삭제</Button>
+        <Button onClick={() => onRemove(id)}>삭제</Button>
       ) : (
-        <Button onClick={() => {}}>추가</Button>
+        <Button onClick={() => onAdd(pokemon)}>추가</Button>
       )}
     </Card>
   );
