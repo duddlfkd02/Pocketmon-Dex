@@ -19,19 +19,23 @@ export default PokemonCard;
 
 const Card = styled.div`
   width: 150px;
-  height: 200px;
-  border: 1px solid black;
-  margin: 20px;
+  height: 250px;
+  margin: 0 10px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 5px 8px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  justify-content: center;
+  flex-direction: column;
+  color: #3f3f3f;
+  font-size: 14px;
 `;
 
 const Button = styled.button`
   border: none;
+  margin-top: 20px;
   padding: 8px 10px;
   border-radius: 5px;
+  background-color: red;
+  color: white;
   cursor: pointer;
 `;
