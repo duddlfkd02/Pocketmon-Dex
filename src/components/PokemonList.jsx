@@ -24,7 +24,6 @@ const ListContainer = styled.div`
   flex-wrap: wrap;
   gap: 30px 10px;
   margin: 20px;
-
   background-color: #f6f6f6;
   border-radius: 10px;
   padding: 20px;

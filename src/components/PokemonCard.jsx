@@ -42,13 +42,20 @@ const Card = styled.div`
   width: 150px;
   height: 250px;
   margin: 0 10px;
-  box-shadow: rgba(17, 17, 26, 0.1) 0px 5px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   color: #3f3f3f;
   font-size: 14px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 5px 8px;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.05);
+    transition: all 0.3s;
+  }
 `;
 
 const Button = styled.button`
@@ -59,4 +66,8 @@ const Button = styled.button`
   background-color: red;
   color: white;
   cursor: pointer;
+
+  &:hover {
+    background-color: #b81919;
+  }
 `;

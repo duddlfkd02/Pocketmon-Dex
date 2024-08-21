@@ -39,7 +39,7 @@ const DashboardContainer = styled.div`
   background-color: #f6f6f6;
   border-radius: 10px;
   text-align: center;
-  color: #ff4229;
+  color: red;
 `;
 
 const DashboardCardBox = styled.ul`
@@ -61,6 +61,8 @@ const DashboardCard = styled.li`
   flex-direction: column;
   color: #3f3f3f;
   font-size: 14px;
+  background-color: white;
+  border-radius: 8px;
 `;
 
 const Button = styled.button`
@@ -71,4 +73,9 @@ const Button = styled.button`
   background-color: red;
   color: white;
   cursor: pointer;
+
+  &:hover {
+    background-color: #b81919;
+    transition: all 0.3s;
+  }
 `;
