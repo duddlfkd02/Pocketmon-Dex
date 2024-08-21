@@ -1,15 +1,36 @@
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const PokemonCard = ({ onAdd, pokemon, onRemove, isSelected }) => {
   const { img_url, korean_name, id } = pokemon;
+  const navigate = useNavigate();
+
   return (
-    <Card>
+    <Card
+      onClick={() => {
+        navigate(`/detail/${id}`);
+      }}
+    >
       <img src={img_url} alt={korean_name} />
       <p>{korean_name}</p>
       {isSelected ? (
-        <Button onClick={() => onRemove(id)}>삭제</Button>
+        <Button
+          onClick={(e) => {
+            e.stopPropagation();
+            onRemove(id);
+          }}
+        >
+          삭제
+        </Button>
       ) : (
-        <Button onClick={() => onAdd(pokemon)}>추가</Button>
+        <Button
+          onClick={(e) => {
+            e.stopPropagation();
+            onAdd(pokemon);
+          }}
+        >
+          추가
+        </Button>
       )}
     </Card>
   );

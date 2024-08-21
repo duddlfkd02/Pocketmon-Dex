@@ -21,9 +21,7 @@ const Dashboard = ({ selectedPokemon, onRemovePokemon }) => {
             <DashboardCard key={pokemon.id}>
               <img src={pokemon.img_url} />
               {pokemon.korean_name}
-              <DashboardButton onClick={() => onRemovePokemon(pokemon.id)}>
-                삭제
-              </DashboardButton>
+              <Button onClick={() => onRemovePokemon(pokemon.id)}>삭제</Button>
             </DashboardCard>
           ))}
         </DashboardCardBox>
@@ -65,7 +63,7 @@ const DashboardCard = styled.li`
   font-size: 14px;
 `;
 
-const DashboardButton = styled.button`
+const Button = styled.button`
   border: none;
   margin-top: 20px;
   padding: 8px 10px;
