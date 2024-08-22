@@ -1,15 +1,20 @@
 import styled from "styled-components";
 import PokemonCard from "../components/PokemonCard";
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext";
 
-const PokemonList = ({ pokemonList, onAddPokemon }) => {
+const PokemonList = ({ pokemonList }) => {
+  const { addPokemon, selectedPokemon } = useContext(PokemonContext);
   return (
     <ListContainer>
       {pokemonList.map((pokemon) => (
         <PokemonCard
           key={pokemon.id}
           pokemon={pokemon}
-          onAdd={onAddPokemon}
-          isSelected={false}
+          onAdd={() => addPokemon(pokemon)}
+          isSelected={selectedPokemon.some(
+            (selected) => selected.id === pokemon.id
+          )}
         />
       ))}
     </ListContainer>

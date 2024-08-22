@@ -1,13 +1,12 @@
-//선택한 포켓몬 보여주기
-
 import styled from "styled-components";
+import { useContext } from "react";
+import { PokemonContext } from "../context/PokemonContext.jsx";
 
-const Dashboard = ({ selectedPokemon, onRemovePokemon }) => {
+const Dashboard = () => {
+  const { selectedPokemon, removePokemon } = useContext(PokemonContext);
+
   if (selectedPokemon.length > 6) {
     alert("최대 6개까지만 선택할 수 있습니다.");
-    // return true;
-    // return을 쓰면 alert창이 2번 뜨고 대쉬보드가 사라짐
-    // 경고창이 2번씩 뜨는 이유?
   }
 
   return (
@@ -21,7 +20,7 @@ const Dashboard = ({ selectedPokemon, onRemovePokemon }) => {
             <DashboardCard key={pokemon.id}>
               <img src={pokemon.img_url} />
               {pokemon.korean_name}
-              <Button onClick={() => onRemovePokemon(pokemon.id)}>삭제</Button>
+              <Button onClick={() => removePokemon(pokemon.id)}>삭제</Button>
             </DashboardCard>
           ))}
         </DashboardCardBox>
