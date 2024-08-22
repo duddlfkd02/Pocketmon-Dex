@@ -5,10 +5,6 @@ import { PokemonContext } from "../context/PokemonContext.jsx";
 const Dashboard = () => {
   const { selectedPokemon, removePokemon } = useContext(PokemonContext);
 
-  if (selectedPokemon.length > 6) {
-    alert("최대 6개까지만 선택할 수 있습니다.");
-  }
-
   return (
     <DashboardContainer>
       <h2>나만의 포켓몬</h2>
