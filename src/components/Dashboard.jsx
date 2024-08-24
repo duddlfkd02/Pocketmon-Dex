@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useContext } from "react";
-import { PokemonContext } from "../context/PokemonContext.jsx";
+import { PokemonContext } from "/src/context/PokemonContext.jsx";
 
 const Dashboard = () => {
   const { selectedPokemon, removePokemon } = useContext(PokemonContext);

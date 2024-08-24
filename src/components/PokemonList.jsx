@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import PokemonCard from "../components/PokemonCard";
 import { useContext } from "react";
-import { PokemonContext } from "../context/PokemonContext";
+import { PokemonContext } from "/src/context/PokemonContext.jsx";
 
 const PokemonList = ({ pokemonList }) => {
   const { addPokemon, selectedPokemon } = useContext(PokemonContext);
