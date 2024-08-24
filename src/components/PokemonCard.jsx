@@ -1,13 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
-
 const PokemonCard = ({ onAdd, pokemon }) => {
   const { img_url, korean_name, id } = pokemon;
   const navigate = useNavigate();
-  // const notify = () => toast("Notify!", { position: "top-center" });
 
   return (
     <Card
@@ -23,7 +19,6 @@ const PokemonCard = ({ onAdd, pokemon }) => {
           onAdd(pokemon);
         }}
       >
-        {/* <ToastContainer /> */}
         추가
       </Button>
     </Card>
