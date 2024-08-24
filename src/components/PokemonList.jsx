@@ -5,18 +5,27 @@ import { PokemonContext } from "../context/PokemonContext";
 
 const PokemonList = ({ pokemonList }) => {
   const { addPokemon, selectedPokemon } = useContext(PokemonContext);
+
   return (
     <ListContainer>
-      {pokemonList.map((pokemon) => (
-        <PokemonCard
-          key={pokemon.id}
-          pokemon={pokemon}
-          onAdd={() => addPokemon(pokemon)}
-          isSelected={selectedPokemon.some(
-            (selected) => selected.id === pokemon.id
-          )}
-        />
-      ))}
+      {pokemonList.map((pokemon) => {
+        const isSelected = selectedPokemon.some(
+          (selected) => selected && selected.id === pokemon.id
+        );
+
+        return (
+          <PokemonCard
+            key={pokemon.id}
+            pokemon={pokemon}
+            onAdd={() => {
+              if (!isSelected) {
+                addPokemon(pokemon);
+              }
+            }}
+            isSelected={isSelected}
+          />
+        );
+      })}
     </ListContainer>
   );
 };

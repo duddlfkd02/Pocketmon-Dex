@@ -6,32 +6,36 @@ import styled from "styled-components";
 export const PokemonContext = createContext(null);
 
 export function PokemonProvider({ children }) {
-  const [selectedPokemon, setSelectedPokemon] = useState([]);
+  const INIT_TEXT = [null, null, null, null, null, null];
+  const [selectedPokemon, setSelectedPokemon] = useState(INIT_TEXT);
+
   const notify = (message) =>
     toast(message, {
       position: "top-center",
     });
 
   const addPokemon = (pokemon) => {
-    if (selectedPokemon.length >= 6) {
-      notify("최대 6개까지만 선택할 수 있습니다.");
+    if (selectedPokemon.some((item) => item && item.id === pokemon.id)) {
+      notify("이미 선택한 포켓몬입니다.");
       return;
     }
 
-    if (!selectedPokemon.some((item) => item.id === pokemon.id)) {
-      setSelectedPokemon([...selectedPokemon, pokemon]);
+    const firstNullIndex = selectedPokemon.indexOf(null);
+
+    if (firstNullIndex !== -1) {
+      const newSelectedPokemon = [...selectedPokemon];
+      newSelectedPokemon[firstNullIndex] = pokemon;
+      setSelectedPokemon(newSelectedPokemon);
     } else {
-      notify("이미 선택한 포켓몬입니다.");
-      return;
+      notify("최대 6개까지 선택할 수 있습니다.");
     }
   };
 
   const removePokemon = (pokemonId) => {
-    const filteredPokemon = selectedPokemon.filter((item) => {
-      return item.id !== pokemonId;
-    });
-    setSelectedPokemon(filteredPokemon);
-    notify("포켓몬이 삭제되었습니다.");
+    const updatedPokemon = selectedPokemon.map((pokemon) =>
+      pokemon && pokemon.id === pokemonId ? null : pokemon
+    );
+    setSelectedPokemon(updatedPokemon);
   };
 
   return (

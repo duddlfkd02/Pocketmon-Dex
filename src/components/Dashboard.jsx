@@ -8,19 +8,21 @@ const Dashboard = () => {
   return (
     <DashboardContainer>
       <h2>나만의 포켓몬</h2>
-      {selectedPokemon.length === 0 ? (
-        <p>포켓몬을 선택해주세요.</p>
-      ) : (
-        <DashboardCardBox>
-          {selectedPokemon.map((pokemon) => (
-            <DashboardCard key={pokemon.id}>
-              <img src={pokemon.img_url} />
-              {pokemon.korean_name}
-              <Button onClick={() => removePokemon(pokemon.id)}>삭제</Button>
-            </DashboardCard>
-          ))}
-        </DashboardCardBox>
-      )}
+      <DashboardCardBox>
+        {selectedPokemon.map((pokemon, index) => (
+          <DashboardCard key={index}>
+            {pokemon ? (
+              <>
+                <img src={pokemon.img_url} alt={pokemon.korean_name} />
+                <p>{pokemon.korean_name}</p>
+                <Button onClick={() => removePokemon(pokemon.id)}>삭제</Button>
+              </>
+            ) : (
+              <img style={{ width: "60%" }} src="./src/assets/pokeball.png" />
+            )}
+          </DashboardCard>
+        ))}
+      </DashboardCardBox>
     </DashboardContainer>
   );
 };
