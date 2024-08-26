@@ -6,7 +6,7 @@ import styled from "styled-components";
 export const PokemonContext = createContext(null);
 
 export function PokemonProvider({ children }) {
-  const INIT_TEXT = [null, null, null, null, null, null];
+  const INIT_TEXT = Array.from({ length: 6 }, () => null);
   const [selectedPokemon, setSelectedPokemon] = useState(INIT_TEXT);
 
   const notify = (message) =>

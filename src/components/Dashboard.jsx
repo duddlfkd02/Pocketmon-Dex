@@ -18,7 +18,10 @@ const Dashboard = () => {
                 <Button onClick={() => removePokemon(pokemon.id)}>삭제</Button>
               </>
             ) : (
-              <img style={{ width: "60%" }} src="./src/assets/pokeball.png" />
+              <img
+                style={{ width: "60%" }}
+                src="./public/assets/pokeball.png"
+              />
             )}
           </DashboardCard>
         ))}

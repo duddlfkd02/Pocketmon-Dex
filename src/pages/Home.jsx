@@ -5,7 +5,7 @@ const Home = () => {
   const navigate = useNavigate();
   return (
     <HomeContainer>
-      <img style={{ width: "50%" }} src={"../src/assets/pokemon-logo.png"} />
+      <img style={{ width: "50%" }} src={"../public/assets/pokemon-logo.png"} />
       <h1 style={{ color: "red" }}>포켓몬 도감</h1>
       <Button
         onClick={() => {
