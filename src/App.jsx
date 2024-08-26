@@ -1,18 +1,7 @@
-import Home from "./pages/Home";
-import Dex from "./pages/Dex";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import PokemonDetail from "./components/PokemonDetail";
+import Router from "./shared/Router";
 
 const App = () => {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/dex" element={<Dex />}></Route>
-        <Route path="/detail/:id" element={<PokemonDetail />}></Route>
-      </Routes>
-    </BrowserRouter>
-  );
+  return <Router />;
 };
 
 export default App;
