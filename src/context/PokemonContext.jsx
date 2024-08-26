@@ -15,19 +15,34 @@ export function PokemonProvider({ children }) {
     });
 
   const addPokemon = (pokemon) => {
-    if (selectedPokemon.some((item) => item && item.id === pokemon.id)) {
+    // 중복 체크
+    const isAlreadySelected = selectedPokemon.some((item) => {
+      return item && item.id === pokemon.id;
+    });
+
+    if (isAlreadySelected) {
       notify("이미 선택한 포켓몬입니다.");
       return;
     }
 
+    // 최대 6개 체크
+    const selectedCount = selectedPokemon.filter(
+      (item) => item !== null
+    ).length;
+
+    if (selectedCount >= 6) {
+      notify("최대 6개까지 선택할 수 있습니다.");
+      return;
+    }
+
+    // 선택된 포켓몬 리스트에 추가
     const firstNullIndex = selectedPokemon.indexOf(null);
 
     if (firstNullIndex !== -1) {
       const newSelectedPokemon = [...selectedPokemon];
       newSelectedPokemon[firstNullIndex] = pokemon;
+
       setSelectedPokemon(newSelectedPokemon);
-    } else {
-      notify("최대 6개까지 선택할 수 있습니다.");
     }
   };
 

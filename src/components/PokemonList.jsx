@@ -18,9 +18,7 @@ const PokemonList = ({ pokemonList }) => {
             key={pokemon.id}
             pokemon={pokemon}
             onAdd={() => {
-              if (!isSelected) {
-                addPokemon(pokemon);
-              }
+              addPokemon(pokemon);
             }}
             isSelected={isSelected}
           />
