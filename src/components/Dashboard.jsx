@@ -1,21 +1,25 @@
 import styled from "styled-components";
-import { useContext } from "react";
-import { PokemonContext } from "/src/context/PokemonContext.jsx";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { removePokemon } from "../redux/modules/pokemonSlice";
 
 const Dashboard = () => {
-  const { selectedPokemon, removePokemon } = useContext(PokemonContext);
+  const pokemons = useSelector((state) => state.pokemons.selectedPokemon);
+  const dispatch = useDispatch();
 
   return (
     <DashboardContainer>
       <h2>나만의 포켓몬</h2>
       <DashboardCardBox>
-        {selectedPokemon.map((pokemon, index) => (
+        {pokemons.map((pokemon, index) => (
           <DashboardCard key={index}>
             {pokemon ? (
               <>
                 <img src={pokemon.img_url} alt={pokemon.korean_name} />
                 <p>{pokemon.korean_name}</p>
-                <Button onClick={() => removePokemon(pokemon.id)}>삭제</Button>
+                <Button onClick={() => dispatch(removePokemon(pokemon))}>
+                  삭제
+                </Button>
               </>
             ) : (
               <img style={{ width: "60%" }} src="./assets/pokeball.png" />

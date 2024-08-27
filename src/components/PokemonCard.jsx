@@ -1,26 +1,28 @@
+import { useDispatch } from "react-redux";
+import { addPokemon } from "../redux/modules/pokemonSlice";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-const PokemonCard = ({ onAdd, pokemon }) => {
+const PokemonCard = ({ pokemon }) => {
+  const dispatch = useDispatch();
   const { img_url, korean_name, id } = pokemon;
   const navigate = useNavigate();
 
+  const onAddButton = (e) => {
+    e.stopPropagation();
+    dispatch(addPokemon(pokemon));
+  };
+
   return (
     <Card
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation();
         navigate(`/detail/${id}`);
       }}
     >
       <img src={img_url} alt={korean_name} />
       <p>{korean_name}</p>
-      <Button
-        onClick={(e) => {
-          e.stopPropagation();
-          onAdd(pokemon);
-        }}
-      >
-        추가
-      </Button>
+      <Button onClick={onAddButton}>추가</Button>
     </Card>
   );
 };

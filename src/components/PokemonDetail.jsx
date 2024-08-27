@@ -1,13 +1,15 @@
 import { useNavigate, useParams } from "react-router-dom";
-import MOCK_DATA from "../mock";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 const PokemonDetail = () => {
   const params = useParams();
   const navigate = useNavigate();
 
-  const pokemonId = params.id;
-  const pokemon = MOCK_DATA.find((p) => p.id === Number(pokemonId));
+  const pokemonId = Number(params.id);
+  const pokemon = useSelector((state) =>
+    state.pokemons.selectedPokemon.find((p) => p.id === pokemonId)
+  );
 
   if (!pokemon) {
     return <div>포켓몬을 찾을 수 없습니다.</div>;

@@ -1,15 +1,20 @@
 import styled from "styled-components";
 import PokemonCard from "../components/PokemonCard";
-import { useContext } from "react";
-import { PokemonContext } from "/src/context/PokemonContext.jsx";
+import { useDispatch, useSelector } from "react-redux";
+import { addPokemon } from "../redux/modules/pokemonSlice";
 
 const PokemonList = ({ pokemonList }) => {
-  const { addPokemon, selectedPokemon } = useContext(PokemonContext);
+  const pokemons = useSelector((state) => state.pokemons.selectedPokemon);
+  const dispatch = useDispatch();
+
+  const onAddButton = (pokemon) => {
+    dispatch(addPokemon(pokemon));
+  };
 
   return (
     <ListContainer>
       {pokemonList.map((pokemon) => {
-        const isSelected = selectedPokemon.some(
+        const isSelected = pokemons.some(
           (selected) => selected && selected.id === pokemon.id
         );
 
@@ -17,9 +22,7 @@ const PokemonList = ({ pokemonList }) => {
           <PokemonCard
             key={pokemon.id}
             pokemon={pokemon}
-            onAdd={() => {
-              addPokemon(pokemon);
-            }}
+            onAdd={() => onAddButton(pokemon)}
             isSelected={isSelected}
           />
         );
